@@ -69,6 +69,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\DailyForecast.cs" />
+    <Compile Include="Model\DayPhase.cs" />
+    <Compile Include="Model\Direction.cs" />
+    <Compile Include="Model\Headline.cs" />
+    <Compile Include="Model\MetricsDetails.cs" />
+    <Compile Include="Model\Moon.cs" />
+    <Compile Include="Model\RealFeelTemperature.cs" />
+    <Compile Include="Model\Sun.cs" />
+    <Compile Include="Model\Temperature.cs" />
+    <Compile Include="Model\WeatherForecast.cs" />
+    <Compile Include="Model\Wind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,5 +105,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
