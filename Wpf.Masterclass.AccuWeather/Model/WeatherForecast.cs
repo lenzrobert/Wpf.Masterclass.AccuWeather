@@ -35,14 +35,84 @@ namespace Wpf.Masterclass.AccuWeather.Model
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
-                Headline = new Headline()
-                {
-                    EffectiveDate = DateTime.Now,
-                    EndDate = DateTime.Now.AddDays(5),
-                    Category = "Headline Category",
-                    Text = "Headline Text"
-                }; 
+                Headline = GetDefaultHeadline();
+                DailyForecasts = GetDefaultForecasts();
             }
         }
+
+        private List<DailyForecast> GetDefaultForecasts()
+        {
+           List<DailyForecast> defaultForecasts = new List<DailyForecast>();
+           DailyForecast dayOne = new DailyForecast()
+           {
+               Date = DateTime.Now,
+               Day = new DayPhase()
+               {
+                   Icon = 1,
+                   IconPhrase = "day 1 default IconPhrase"
+               },
+               Night = new DayPhase()
+               {
+                   Icon = 1,
+                   IconPhrase = "night 1 default IconPhrase"
+               },
+               Sources = new List<string>(),
+               Temperature = new Temperature()
+           };
+            dayOne.Sources.Add("String Source 1");
+            dayOne.Sources.Add("String Source 2");
+            dayOne.Temperature.Maximum = new MetricsDetails()
+            {
+                Unit = "Temp Maximum Unit 1",
+                UnitType = 1,
+            };
+            dayOne.Temperature.Minimum = new MetricsDetails()
+            {
+                Unit = "Temp Minimum Unit 1",
+                UnitType = 1,
+            };
+            defaultForecasts.Add(dayOne);
+
+            DailyForecast dayTwo = new DailyForecast()
+            {
+                Date = DateTime.Now.AddDays(1),
+                Day = new DayPhase()
+                {
+                    Icon = 2,
+                    IconPhrase = "day 2 default IconPhrase"
+                },
+                Night = new DayPhase()
+                {
+                    Icon = 1,
+                    IconPhrase = "night 2 default IconPhrase"
+                },
+                Sources = new List<string>(),
+                Temperature = new Temperature()
+            };
+            dayOne.Sources.Add("String Source 1");
+            dayOne.Sources.Add("String Source 2");
+            dayOne.Temperature.Maximum = new MetricsDetails()
+            {
+                Unit = "Temp Maximum Unit 2",
+                UnitType = 2,
+            };
+            dayOne.Temperature.Minimum = new MetricsDetails()
+            {
+                Unit = "Temp Minimum Unit 2",
+                UnitType = 2,
+            };
+            defaultForecasts.Add(dayTwo);
+
+            return defaultForecasts;
+        }
+
+        private Headline GetDefaultHeadline() =>
+            new Headline()
+            {
+                EffectiveDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(5),
+                Category = "Headline Category",
+                Text = "Headline Text"
+            };
     }
 }

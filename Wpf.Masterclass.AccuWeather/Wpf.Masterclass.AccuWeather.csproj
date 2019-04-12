@@ -59,6 +59,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\BasicForecast.cs" />
+    <Compile Include="Model\Locations\ForecastLocation.cs" />
+    <Compile Include="Model\Locations\Location.cs" />
     <Compile Include="ViewModel\ForecastApi.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

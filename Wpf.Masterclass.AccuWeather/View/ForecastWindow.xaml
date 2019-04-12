@@ -13,16 +13,37 @@
     <Grid DataContext="{StaticResource Vm}">
         <!-- Headline information-->
         <StackPanel Margin="10"
-                    DataContext="{Binding CurrentForecast.Headline}">
+                    DataContext="{Binding CurrentForecast}">
             <Label>Forecast Berlin - 5 Days</Label>
             <TextBlock
-                Text="{Binding Text}"/>
+                Text="{Binding Headline.Text}"/>
             <TextBlock
-                Text="{Binding Category}"/>
+                Text="{Binding Headline.EffectiveDate, StringFormat='{}{0:f}'}"/>
             <TextBlock
-                Text="{Binding EffectiveDate}"/>
+                Text="{Binding Headline.EndDate,StringFormat='{}{0:f}'}"/>
             <TextBlock
-                Text="{Binding EndDate}"/>
+                Text="{Binding Headline.Category}"/>
+            <ListView
+                ItemsSource="{Binding  DailyForecasts}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock
+                                Text="{Binding Date, StringFormat='{}{0:d}'}"/>
+                            <StackPanel>
+                                <TextBlock
+                                    Text="{Binding Day.IconPhrase}"/>
+                                <TextBlock
+                                   Text="{Binding Night.IconPhrase }"/>
+                                <TextBlock
+                                    Text="{Binding Temperature.Maximum.Value}"/>
+                                <TextBlock
+                                    Text="{Binding Temperature.Minimum.Value}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
           </StackPanel>
     </Grid>
 </Window>
