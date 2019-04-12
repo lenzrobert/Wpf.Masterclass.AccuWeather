@@ -1,0 +1,28 @@
+﻿<Window x:Class="Wpf.Masterclass.AccuWeather.View.ForecastWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf.Masterclass.AccuWeather.View"
+        xmlns:vm="clr-namespace:Wpf.Masterclass.AccuWeather.ViewModel"
+        mc:Ignorable="d"
+        Title="ForecastWindow" Height="500" Width="400">
+    <Window.Resources>
+        <vm:ForecastViewModel x:Key="Vm"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource Vm}">
+        <!-- Headline information-->
+        <StackPanel Margin="10"
+                    DataContext="{Binding CurrentForecast.Headline}">
+            <Label>Forecast Berlin - 5 Days</Label>
+            <TextBlock
+                Text="{Binding Text}"/>
+            <TextBlock
+                Text="{Binding Category}"/>
+            <TextBlock
+                Text="{Binding EffectiveDate}"/>
+            <TextBlock
+                Text="{Binding EndDate}"/>
+          </StackPanel>
+    </Grid>
+</Window>

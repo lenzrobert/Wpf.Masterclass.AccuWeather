@@ -1,14 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Wpf.Masterclass.AccuWeather.Model
+﻿namespace Wpf.Masterclass.AccuWeather.Model
 {
-    public class Temperature
+    public class Temperature : BasicForecast
     {
-        public MetricsDetails Minimum { get; set; }
-        public MetricsDetails Maximum { get; set; }
+        private MetricsDetails _minimum;
+        private MetricsDetails _maximum;
+
+        public MetricsDetails Minimum
+        {
+            get => _minimum;
+            set
+            {
+                _minimum = value;
+                OnPropertyChanged("Minimum");
+            }
+        }
+
+        public MetricsDetails Maximum
+        {
+            get => _maximum;
+            set
+            {
+                _maximum = value;
+                OnPropertyChanged("Maximum");
+            }
+        }
     }
 }

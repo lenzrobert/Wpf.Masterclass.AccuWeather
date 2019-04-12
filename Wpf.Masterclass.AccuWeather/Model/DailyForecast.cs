@@ -1,21 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Wpf.Masterclass.AccuWeather.Model
 {
-    public class DailyForecast
+    public class DailyForecast : BasicForecast
     {
-        public DateTime Date { get; set; }
-        public Sun Sun { get; set; }
-        public Moon Moon { get; set; }
-        public Temperature Temperature { get; set; }
-        public RealFeelTemperature RealFeelTemperature { get; set; }
-        public double HoursOfSun { get; set; }
-        public DayPhase Day { get; set; }
-        public DayPhase Night { get; set; }
+        private DateTime _date;
+        private Temperature _temperature;
+        private DayPhase _day;
+        private DayPhase _night;
+        private List<string> _sources;
 
+        public DateTime Date
+        {
+            get => _date;
+            set
+            {
+                _date = value;
+                OnPropertyChanged("Date");
+            }
+        }
+
+        public Temperature Temperature
+        {
+            get => _temperature;
+            set
+            {
+                _temperature = value;
+                OnPropertyChanged("Temperature");
+            }
+        }
+
+        public DayPhase Day
+        {
+            get => _day;
+            set
+            {
+                _day = value;
+                OnPropertyChanged("Day");
+            }
+        }
+
+        public DayPhase Night
+        {
+            get => _night;
+            set
+            {
+                _night = value;
+                OnPropertyChanged("Night");
+            }
+        }
+
+        public List<string> Sources
+        {
+            get => _sources;
+            set
+            {
+                _sources = value;
+                OnPropertyChanged("Sources");
+            }
+        }
     }
 }

@@ -1,15 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Wpf.Masterclass.AccuWeather.Model
+﻿namespace Wpf.Masterclass.AccuWeather.Model
 {
-    public class MetricsDetails
+    public class MetricsDetails : BasicForecast
     {
-        public double Value { get; set; }
-        public string Unit { get; set; }
-        public int UnitType { get; set; }
+        private double _value;
+        private string _unit;
+        private int _unitType;
+
+        public double Value
+        {
+            get => _value;
+            set
+            {
+                _value = value;
+                OnPropertyChanged("Value");
+            }
+        }
+
+        public string Unit
+        {
+            get => _unit;
+            set
+            {
+                _unit = value;
+                OnPropertyChanged("Unit");
+            }
+        }
+
+        public int UnitType
+        {
+            get => _unitType;
+            set
+            {
+                _unitType = value;
+                OnPropertyChanged("UnitType");
+            }
+        }
     }
 }

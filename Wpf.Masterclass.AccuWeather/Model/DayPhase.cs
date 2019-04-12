@@ -1,24 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Wpf.Masterclass.AccuWeather.Model
+﻿namespace Wpf.Masterclass.AccuWeather.Model
 {
-    public class DayPhase
+    public class DayPhase : BasicForecast
     {
-        public int Icon { get; set; }
-        public string IconPhrase { get; set; }
-        public string LongPhrase { get; set; }
-        public int ThunderstormProbability { get; set; }
-        public int RainProbability { get; set; }
-        public int SnowProbability { get; set; }
-        public int IceProbability { get; set; }
-        public Wind Wind { get; set; }
-        public MetricsDetails Rain { get; set; }
-        public MetricsDetails Snow { get; set; }
-        public double HoursOfPrecipitation { get; set; }
-        public double HoursOfRain { get; set; }
+        private int _icon;
+        private string _iconPhrase;
+
+        public int Icon
+        {
+            get => _icon;
+            set
+            {
+                _icon = value;
+                OnPropertyChanged("Icon");
+            }
+        }
+
+        public string IconPhrase
+        {
+            get => _iconPhrase;
+            set
+            {
+                _iconPhrase = value;
+                OnPropertyChanged("IconPhrase");
+            }
+        }
     }
 }

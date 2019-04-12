@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Wpf.Masterclass.AccuWeather
+namespace Wpf.Masterclass.AccuWeather.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ForecastWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ForecastWindow : Window
     {
-        public MainWindow()
+        public ForecastWindow()
         {
             InitializeComponent();
         }
