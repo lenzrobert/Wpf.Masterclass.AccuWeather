@@ -22,6 +22,12 @@
                TargetType="TextBox">
             <Setter Property="Margin" Value="15,0,0,10"/>
         </Style>
+        <Style x:Key="HeadlineTextBlock"
+               TargetType="TextBlock">
+            <Setter Property="Margin" Value="3,0,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
     </Window.Resources>
     <Grid DataContext="{StaticResource Vm}">
         <!-- Headline information-->
@@ -81,6 +87,7 @@
                     Grid.ColumnSpan="2"
                     Grid.Row="0"
                     HorizontalAlignment="Center"
+                    Margin="0,0,0,10"
                     Text="{Binding Headline.Text}" />
                 <Label
                     Grid.Column="0"
@@ -89,6 +96,7 @@
                 <TextBlock
                     Grid.Column="1"
                     Grid.Row="1"
+                    Style="{StaticResource HeadlineTextBlock}"
                     Text="{Binding Headline.EffectiveDate, StringFormat='{}{0:f}'}"/>
                 <Label
                     Grid.Column="0"
@@ -97,6 +105,7 @@
                 <TextBlock
                     Grid.Column="1"
                     Grid.Row="2"
+                    Style="{StaticResource HeadlineTextBlock}"
                     Text="{Binding Headline.EndDate,StringFormat='{}{0:f}'}"/>
                 <Label
                     Grid.Column="0"
@@ -105,6 +114,7 @@
                 <TextBlock
                     Grid.Column="1"
                     Grid.Row="3"
+                    Style="{StaticResource HeadlineTextBlock}"
                     Text="{Binding Headline.Category}"/>
             </Grid>
            <ListView
