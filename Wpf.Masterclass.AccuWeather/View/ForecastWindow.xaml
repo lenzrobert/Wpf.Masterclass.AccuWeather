@@ -6,24 +6,108 @@
         xmlns:local="clr-namespace:Wpf.Masterclass.AccuWeather.View"
         xmlns:vm="clr-namespace:Wpf.Masterclass.AccuWeather.ViewModel"
         mc:Ignorable="d"
-        Title="ForecastWindow" Height="500" Width="400">
+        Title="Weather Forecast Window" Height="800" Width="600">
     <Window.Resources>
         <vm:ForecastViewModel x:Key="Vm"/>
+        <Style x:Key="AreaHeaderHeadline"
+            TargetType="Label">
+            <Setter Property="Margin" Value="0,0,0,3"/>
+            <Setter Property="FontFamily" Value="Arial Black"/>
+        </Style>
+        <Style x:Key="AreaDetailsLabel"
+               TargetType="Label">
+             <Setter Property="FontFamily" Value="Arial"/>
+        </Style>
+        <Style x:Key="SearchTextBox"
+               TargetType="TextBox">
+            <Setter Property="Margin" Value="15,0,0,10"/>
+        </Style>
     </Window.Resources>
     <Grid DataContext="{StaticResource Vm}">
         <!-- Headline information-->
         <StackPanel Margin="10"
                     DataContext="{Binding CurrentForecast}">
-            <Label>Forecast Berlin - 5 Days</Label>
-            <TextBlock
-                Text="{Binding Headline.Text}"/>
-            <TextBlock
-                Text="{Binding Headline.EffectiveDate, StringFormat='{}{0:f}'}"/>
-            <TextBlock
-                Text="{Binding Headline.EndDate,StringFormat='{}{0:f}'}"/>
-            <TextBlock
-                Text="{Binding Headline.Category}"/>
+            <Label
+                Style="{StaticResource AreaHeaderHeadline}"
+                Content="Search for Location:"/>
+            <TextBox
+                Text="{Binding Source={StaticResource Vm}, Path=Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Style="{StaticResource SearchTextBox}"/>
+            <Label
+                Style="{StaticResource AreaHeaderHeadline}"
+                Content="Search Result:"/>
             <ListView
+               Height="100"
+               Margin= "15,0,0,10"
+               SelectedItem="{Binding Source={StaticResource Vm}, Path=SelectedResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+               ItemsSource="{Binding Source={StaticResource Vm}, Path=Locations}">
+               
+               <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                        <TextBlock Text="{Binding LocalizedName}"/>
+                        <TextBlock Text="{Binding Country.LocalizedName}"/>
+                        <Rectangle StrokeThickness="0.4" Height="0.4" x:Name="Separator" 
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Stroke="#D1D3D4" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+           </ListView>
+            <StackPanel>
+                <Label
+                    Style="{StaticResource AreaHeaderHeadline}"
+                    Content="Weather for:"/>
+                <Label
+                    Style="{StaticResource AreaDetailsLabel}"
+                    Content="{Binding Source={StaticResource Vm}, Path=SelectedResult.LocalizedName}"/>
+                <Label
+                    Style="{StaticResource AreaDetailsLabel}"
+                    Content="{Binding Source={StaticResource Vm}, Path=SelectedResult.Country.LocalizedName}"/>
+            </StackPanel>
+            <Grid
+                Margin="15,0,0,15">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+               
+                <TextBlock
+                    Grid.ColumnSpan="2"
+                    Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    Text="{Binding Headline.Text}" />
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Content="Weather Effective:"/>
+                <TextBlock
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="{Binding Headline.EffectiveDate, StringFormat='{}{0:f}'}"/>
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Content="Forecast effective:"/>
+                <TextBlock
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Text="{Binding Headline.EndDate,StringFormat='{}{0:f}'}"/>
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    Content="Category:"/>
+                <TextBlock
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Text="{Binding Headline.Category}"/>
+            </Grid>
+           <ListView
                 ItemsSource="{Binding  DailyForecasts}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

@@ -6,7 +6,8 @@
              StartupUri="View/ForecastWindow.xaml">
     <Application.Resources>
         <sys:String x:Key="AccuWeatherApiKey">z3eALVRf6f5sATAKAzI4tFV08GCUFAY9</sys:String>
-        <sys:String x:Key="AccuWeatherBasicUrl">http://dataservice.accuweather.com/forecasts/v1/</sys:String>
+        <sys:String x:Key="AccuWeatherForecastBasicUrl">http://dataservice.accuweather.com/forecasts/v1/</sys:String>
+        <sys:String x:Key="AccuWeatherAutoCompleteBasicUrl">http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=</sys:String>
         <sys:String x:Key="AccuWeatherCityCodeBerlin">178087</sys:String>
     </Application.Resources>
 </Application>
