@@ -58,9 +58,16 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
 
         private async void GetWeather()
         {
-            WeatherForecast forecast = await ForecastApi.GetWeatherInformation5DaysAsync(SelectedResult.Key);
-            CurrentForecast.Headline = forecast.Headline;
-            CurrentForecast.DailyForecasts = forecast.DailyForecasts;
+            if (SelectedResult.Key != null)
+            {
+                WeatherForecast forecast = await ForecastApi.GetWeatherInformation5DaysAsync(SelectedResult.Key);
+                if (forecast != null)
+                {
+                    CurrentForecast.Headline = forecast.Headline;
+                    CurrentForecast.DailyForecasts = forecast.DailyForecasts;
+                } 
+            }
+           
         }
 
 

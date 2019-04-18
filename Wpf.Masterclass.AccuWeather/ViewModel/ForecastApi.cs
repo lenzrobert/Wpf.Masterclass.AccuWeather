@@ -15,22 +15,27 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
     {
         public static async Task<WeatherForecast> GetWeatherInformation5DaysAsync(string citiyCode)
         {
-            
-            string apiEndpoint = $"{Application.Current.TryFindResource("AccuWeatherForecastBasicUrl")}daily/5day/{citiyCode}";
-            string url = $"{apiEndpoint}?apikey={Application.Current.TryFindResource("AccuWeatherApiKey")}&details=true&metric=true";
 
-            WeatherForecast forecast = null;
-            using (HttpClient client = new HttpClient())
+            if (!string.IsNullOrEmpty(citiyCode))
             {
-                HttpResponseMessage response = await client.GetAsync(url);
-                string json = await response.Content.ReadAsStringAsync();
-                if (!string.IsNullOrEmpty(json))
+                string apiEndpoint = $"{Application.Current.TryFindResource("AccuWeatherForecastBasicUrl")}daily/5day/{citiyCode}";
+                string url = $"{apiEndpoint}?apikey={Application.Current.TryFindResource("AccuWeatherApiKey")}&details=true&metric=true";
+
+                WeatherForecast forecast = null;
+                using (HttpClient client = new HttpClient())
                 {
-                    forecast = JsonConvert.DeserializeObject<WeatherForecast>(json);
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    string json = await response.Content.ReadAsStringAsync();
+                    if (!string.IsNullOrEmpty(json))
+                    {
+                        forecast = JsonConvert.DeserializeObject<WeatherForecast>(json);
+                    }
                 }
+
+                return forecast; 
             }
 
-            return forecast;
+            return null;
         }
 
         public static async Task<List<ForecastLocation>> GetAutocompleteAsync(string query)

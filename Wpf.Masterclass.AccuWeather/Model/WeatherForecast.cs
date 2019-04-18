@@ -61,16 +61,7 @@ namespace Wpf.Masterclass.AccuWeather.Model
            };
             dayOne.Sources.Add("String Source 1");
             dayOne.Sources.Add("String Source 2");
-            dayOne.Temperature.Maximum = new MetricsDetails()
-            {
-                Unit = "Temp Maximum Unit 1",
-                UnitType = 1,
-            };
-            dayOne.Temperature.Minimum = new MetricsDetails()
-            {
-                Unit = "Temp Minimum Unit 1",
-                UnitType = 1,
-            };
+            
             defaultForecasts.Add(dayOne);
 
             DailyForecast dayTwo = new DailyForecast()
@@ -91,16 +82,7 @@ namespace Wpf.Masterclass.AccuWeather.Model
             };
             dayOne.Sources.Add("String Source 1");
             dayOne.Sources.Add("String Source 2");
-            dayOne.Temperature.Maximum = new MetricsDetails()
-            {
-                Unit = "Temp Maximum Unit 2",
-                UnitType = 2,
-            };
-            dayOne.Temperature.Minimum = new MetricsDetails()
-            {
-                Unit = "Temp Minimum Unit 2",
-                UnitType = 2,
-            };
+           
             defaultForecasts.Add(dayTwo);
 
             return defaultForecasts;

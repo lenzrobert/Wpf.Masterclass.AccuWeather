@@ -1,10 +1,12 @@
-﻿namespace Wpf.Masterclass.AccuWeather.Model
+﻿using System.Windows.Controls;
+
+namespace Wpf.Masterclass.AccuWeather.Model
 {
     public class MetricsDetails : BasicForecast
     {
         private double _value;
         private string _unit;
-        private int _unitType;
+       
 
         public double Value
         {
@@ -26,14 +28,7 @@
             }
         }
 
-        public int UnitType
-        {
-            get => _unitType;
-            set
-            {
-                _unitType = value;
-                OnPropertyChanged("UnitType");
-            }
-        }
+
+        public override string ToString() => $"{Value} {Unit}°";
     }
 }

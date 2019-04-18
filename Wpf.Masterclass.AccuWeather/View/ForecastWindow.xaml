@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Wpf.Masterclass.AccuWeather.View"
         xmlns:vm="clr-namespace:Wpf.Masterclass.AccuWeather.ViewModel"
         mc:Ignorable="d"
-        Title="Weather Forecast Window" Height="800" Width="600">
+        Title="Weather Forecast Window" Height="800" Width="600"
+        SizeToContent="Height">
     <Window.Resources>
         <vm:ForecastViewModel x:Key="Vm"/>
         <Style x:Key="AreaHeaderHeadline"
@@ -17,6 +18,10 @@
         <Style x:Key="AreaDetailsLabel"
                TargetType="Label">
              <Setter Property="FontFamily" Value="Arial"/>
+        </Style>
+        <Style x:Key="ForeCastDetailsLabel"
+               TargetType="Label">
+            <Setter Property="FontFamily" Value="Arial Narrow"/>
         </Style>
         <Style x:Key="SearchTextBox"
                TargetType="TextBox">
@@ -86,10 +91,11 @@
                 <TextBlock
                     Grid.ColumnSpan="2"
                     Grid.Row="0"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     Margin="0,0,0,10"
-                    Text="{Binding Headline.Text}" />
+                    Text="{Binding Headline.Text}" FontFamily="Segoe UI Black" />
                 <Label
+                    Style="{StaticResource ForeCastDetailsLabel}"
                     Grid.Column="0"
                     Grid.Row="1"
                     Content="Weather Effective:"/>
@@ -121,20 +127,65 @@
                 ItemsSource="{Binding  DailyForecasts}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
+                        <Grid
+                            Margin="15,0,0,15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Style="{StaticResource ForeCastDetailsLabel}"
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Content="Forecast for:"/>
                             <TextBlock
-                                Text="{Binding Date, StringFormat='{}{0:d}'}"/>
-                            <StackPanel>
-                                <TextBlock
-                                    Text="{Binding Day.IconPhrase}"/>
-                                <TextBlock
-                                   Text="{Binding Night.IconPhrase }"/>
-                                <TextBlock
-                                    Text="{Binding Temperature.Maximum.Value}"/>
-                                <TextBlock
-                                    Text="{Binding Temperature.Minimum.Value}"/>
-                            </StackPanel>
-                        </StackPanel>
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Text="{Binding Date, StringFormat='{}{0:dddd, d.MM.yyy}'}"/>
+                            <Label
+                                Style="{StaticResource ForeCastDetailsLabel}"
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                Content="Weather - Day"/>
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Text="{Binding Day.IconPhrase}"/>
+                            <Label
+                                Style="{StaticResource ForeCastDetailsLabel}"
+                                Grid.Column="0"
+                                Grid.Row="2"
+                                Content="Weather - Night"/>
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                Text="{Binding Night.IconPhrase }"/>
+                            <Label
+                                Style="{StaticResource ForeCastDetailsLabel}"
+                                Grid.Column="0"
+                                Grid.Row="3"
+                                Content="Temperature Maximum"/>
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="3"
+                                Text="{Binding Temperature.Maximum}"/>
+                            <Label
+                                Style="{StaticResource ForeCastDetailsLabel}"
+                                Grid.Column="0"
+                                Grid.Row="4"
+                                Content="Temperature Minimum"/>
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="4"
+                                Text="{Binding Temperature.Minimum}"/>
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

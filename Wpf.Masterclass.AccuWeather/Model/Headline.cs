@@ -4,12 +4,12 @@ namespace Wpf.Masterclass.AccuWeather.Model
 {
     public class Headline : BasicForecast
     {
-        private DateTime _effectiveDate;
+        private DateTime? _effectiveDate;
         private string _text;
         private string _category;
-        private DateTime _endDate;
+        private DateTime? _endDate;
 
-        public DateTime EffectiveDate
+        public DateTime? EffectiveDate
         {
             get => _effectiveDate;
             set
@@ -39,7 +39,7 @@ namespace Wpf.Masterclass.AccuWeather.Model
             }
         }
 
-        public DateTime EndDate
+        public DateTime? EndDate
         {
             get => _endDate;
             set
