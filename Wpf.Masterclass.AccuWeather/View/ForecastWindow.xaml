@@ -52,18 +52,18 @@
                Margin= "15,0,0,10"
                SelectedItem="{Binding Source={StaticResource Vm}, Path=SelectedResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                ItemsSource="{Binding Source={StaticResource Vm}, Path=Locations}">
-               
-               <ListView.ItemTemplate>
+
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                        <TextBlock Text="{Binding LocalizedName}"/>
-                        <TextBlock Text="{Binding Country.LocalizedName}"/>
-                        <Rectangle StrokeThickness="0.4" Height="0.4" x:Name="Separator" 
+                            <TextBlock Text="{Binding LocalizedName}"/>
+                            <TextBlock Text="{Binding Country.LocalizedName}"/>
+                            <Rectangle StrokeThickness="0.4" Height="0.4" x:Name="Separator" 
                                    VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Stroke="#D1D3D4" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-           </ListView>
+            </ListView>
             <StackPanel>
                 <Label
                     Style="{StaticResource AreaHeaderHeadline}"
@@ -87,7 +87,7 @@
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-               
+
                 <TextBlock
                     Grid.ColumnSpan="2"
                     Grid.Row="0"
@@ -123,7 +123,12 @@
                     Style="{StaticResource HeadlineTextBlock}"
                     Text="{Binding Headline.Category}"/>
             </Grid>
-           <ListView
+            <Button
+                Content="Refresh"
+                Command="{Binding Source={StaticResource Vm}, Path=RefreshCommand}"
+                CommandParameter="{Binding Source={StaticResource Vm}, Path=CurrentForecast}"
+                Margin="15 10 15 10"/>
+            <ListView
                 ItemsSource="{Binding  DailyForecasts}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -189,6 +194,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-          </StackPanel>
+           
+        </StackPanel>
     </Grid>
 </Window>

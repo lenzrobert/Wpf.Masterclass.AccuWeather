@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Wpf.Masterclass.AccuWeather.Commands;
 using Wpf.Masterclass.AccuWeather.Model;
 using Wpf.Masterclass.AccuWeather.Model.Locations;
 
@@ -12,6 +9,7 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
     public class ForecastViewModel
     {
        public WeatherForecast CurrentForecast { get; set; }
+       public RefreshCommand RefreshCommand { get; set; }
 
         private string _query;
 
@@ -43,6 +41,7 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
         {
            CurrentForecast = new WeatherForecast();
            Locations = new ObservableCollection<ForecastLocation>();
+           RefreshCommand = new RefreshCommand(this);
         }
 
         private async void GetLocations()
@@ -56,7 +55,7 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
         }
 
 
-        private async void GetWeather()
+        internal async void GetWeather()
         {
             if (SelectedResult.Key != null)
             {
