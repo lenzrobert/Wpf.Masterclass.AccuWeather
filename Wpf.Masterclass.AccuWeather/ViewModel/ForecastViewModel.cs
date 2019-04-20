@@ -11,6 +11,8 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
        public WeatherForecast CurrentForecast { get; set; }
        public RefreshCommand RefreshCommand { get; set; }
 
+      
+
         private string _query;
 
         public string Query
@@ -42,6 +44,7 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
            CurrentForecast = new WeatherForecast();
            Locations = new ObservableCollection<ForecastLocation>();
            RefreshCommand = new RefreshCommand(this);
+          
         }
 
         private async void GetLocations()
@@ -64,6 +67,7 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
                 {
                     CurrentForecast.Headline = forecast.Headline;
                     CurrentForecast.DailyForecasts = forecast.DailyForecasts;
+                   
                 } 
             }
            

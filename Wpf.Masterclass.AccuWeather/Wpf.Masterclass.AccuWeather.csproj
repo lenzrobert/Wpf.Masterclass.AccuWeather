@@ -59,6 +59,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RefreshCommand.cs" />
+    <Compile Include="Converters\UvToStringConverter.cs" />
+    <Compile Include="Model\AirAndPollen.cs" />
     <Compile Include="Model\BasicForecast.cs" />
     <Compile Include="Model\Locations\ForecastLocation.cs" />
     <Compile Include="Model\Locations\Area.cs" />

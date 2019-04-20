@@ -10,6 +10,7 @@ namespace Wpf.Masterclass.AccuWeather.Model
         private DayPhase _day;
         private DayPhase _night;
         private List<string> _sources;
+        private List<AirAndPollen> _airAndPollen;
 
         public DateTime Date
         {
@@ -60,5 +61,16 @@ namespace Wpf.Masterclass.AccuWeather.Model
                 OnPropertyChanged("Sources");
             }
         }
+
+        public List<AirAndPollen> AirAndPollen
+        {
+            get => _airAndPollen;
+            set
+            {
+                _airAndPollen = value;
+                OnPropertyChanged("AirAndPollen");
+            }
+        }
+
     }
 }
