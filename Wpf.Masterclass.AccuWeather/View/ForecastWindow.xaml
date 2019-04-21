@@ -11,6 +11,7 @@
         SizeToContent="Height">
     <Window.Resources>
         <vm:ForecastViewModel x:Key="Vm"/>
+        <converter:UvValueToStringConverter x:Key="AirQualityConverter"/>
         <Style x:Key="AreaHeaderHeadline"
             TargetType="Label">
             <Setter Property="Margin" Value="0,0,0,3"/>
@@ -22,7 +23,7 @@
         </Style>
         <Style x:Key="ForeCastDetailsLabel"
                TargetType="Label">
-            <Setter Property="FontFamily" Value="Arial Narrow"/>
+            <Setter Property="FontFamily" Value="Arial"/>
         </Style>
         <Style x:Key="SearchTextBox"
                TargetType="TextBox">
@@ -31,10 +32,22 @@
         <Style x:Key="HeadlineTextBlock"
                TargetType="TextBlock">
             <Setter Property="Margin" Value="3,0,0,0"/>
+            <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
-        <converter:UvValueToStringConverter x:Key="AirQualityConverter"/>
+        <Style x:Key="ListViewTextBlock"
+               TargetType="TextBlock">
+            <Setter Property="Margin" Value="3,0,0,0"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+       </Style>
+        <Style x:Key="ForecastItemsTextBlock"
+               TargetType="TextBlock">
+            <Setter Property="Margin" Value="3,0,0,0"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
     </Window.Resources>
     <Grid DataContext="{StaticResource Vm}">
         <!-- Headline information-->
@@ -59,8 +72,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding LocalizedName}"/>
-                            <TextBlock Text="{Binding Country.LocalizedName}"/>
+                            <TextBlock
+                                FontFamily="Arial Black"
+                                Text="{Binding LocalizedName}"/>
+                            <TextBlock
+                                FontFamily="Arial Narrow"
+                                FontSize="10"
+                                Text="{Binding Country.LocalizedName}" />
                             <Rectangle StrokeThickness="0.4" Height="0.4" x:Name="Separator" 
                                    VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Stroke="#D1D3D4" />
                         </StackPanel>
@@ -109,6 +127,7 @@
                     Style="{StaticResource HeadlineTextBlock}"
                     Text="{Binding Headline.EffectiveDate, StringFormat='{}{0:f}'}"/>
                 <Label
+                    Style="{StaticResource ForeCastDetailsLabel}"
                     Grid.Column="0"
                     Grid.Row="2"
                     Content="Forecast effective:"/>
@@ -118,6 +137,7 @@
                     Style="{StaticResource HeadlineTextBlock}"
                     Text="{Binding Headline.EndDate,StringFormat='{}{0:f}'}"/>
                 <Label
+                    Style="{StaticResource ForeCastDetailsLabel}"
                     Grid.Column="0"
                     Grid.Row="3"
                     Content="Category:"/>
@@ -156,6 +176,8 @@
                                     Grid.Column="0"
                                     Grid.Row="0"
                                     Grid.ColumnSpan="2"
+                                    FontFamily="Arial Black"
+                                    FontSize="14"
                                     Text="{Binding Date, StringFormat='{}{0:dddd, d.MM.yyy}'}"/>
                                 <Label
                                 Style="{StaticResource ForeCastDetailsLabel}"
@@ -165,6 +187,8 @@
                             <TextBlock
                                 Grid.Column="1"
                                 Grid.Row="1"
+                                
+                                Style="{StaticResource ForecastItemsTextBlock}"
                                 Text="{Binding Day.IconPhrase}"/>
                             <Label
                                 Style="{StaticResource ForeCastDetailsLabel}"
@@ -174,6 +198,7 @@
                             <TextBlock
                                 Grid.Column="1"
                                 Grid.Row="2"
+                                Style="{StaticResource ForecastItemsTextBlock}"
                                 Text="{Binding Night.IconPhrase }"/>
                             <Label
                                 Style="{StaticResource ForeCastDetailsLabel}"
@@ -183,6 +208,7 @@
                             <TextBlock
                                 Grid.Column="1"
                                 Grid.Row="3"
+                                Style="{StaticResource ForecastItemsTextBlock}"
                                 Text="{Binding Temperature.Maximum}"/>
                             <Label
                                 Style="{StaticResource ForeCastDetailsLabel}"
@@ -192,6 +218,7 @@
                             <TextBlock
                                 Grid.Column="1"
                                 Grid.Row="4"
+                                Style="{StaticResource ForecastItemsTextBlock}"
                                 Text="{Binding Temperature.Minimum}"/>
                         </Grid>
                             <!-- Right section for air quality and pollution information -->
@@ -212,10 +239,12 @@
                                         <TextBlock
                                              Grid.Column="0"
                                              Grid.Row="0"
+                                             Style="{StaticResource ForecastItemsTextBlock}"
                                              Text="{Binding Name}"/>
                                         <TextBlock
                                             Grid.Column="1"
                                             Grid.Row="0"
+                                            Style="{StaticResource ForecastItemsTextBlock}"
                                             Text="{Binding CategoryValue, Converter={StaticResource AirQualityConverter}}"/>
                                             </Grid>
                                     </DataTemplate>
