@@ -41,7 +41,7 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
         }
 
         /// <summary>
-        /// Asyc method to get locatons from Accu Weather Autocomplete REST api
+        /// Async method to get locations from Accu Weather Autocomplete REST api
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
