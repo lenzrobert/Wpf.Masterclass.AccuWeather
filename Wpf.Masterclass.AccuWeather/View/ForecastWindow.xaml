@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf.Masterclass.AccuWeather.View"
         xmlns:vm="clr-namespace:Wpf.Masterclass.AccuWeather.ViewModel"
+        xmlns:converter="clr-namespace:Wpf.Masterclass.AccuWeather.Converters"
         mc:Ignorable="d"
         Title="Weather Forecast Window" Height="800" Width="650"
         SizeToContent="Height">
@@ -33,6 +34,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
+        <converter:UvValueToStringConverter x:Key="AirQualityConverter"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource Vm}">
         <!-- Headline information-->
@@ -208,7 +210,7 @@
                                         <TextBlock
                                             Grid.Column="1"
                                             Grid.Row="0"
-                                            Text="{Binding Category}"/>
+                                            Text="{Binding CategoryValue, Converter={StaticResource AirQualityConverter}}"/>
                                             </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
