@@ -43,18 +43,19 @@
             <Label
                 Style="{StaticResource AreaHeaderHeadline}"
                 Content="Search for Location:"/>
+            <!--Search Box for Location-->
             <TextBox
                 Text="{Binding Source={StaticResource Vm}, Path=Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Style="{StaticResource SearchTextBox}"/>
             <Label
                 Style="{StaticResource AreaHeaderHeadline}"
                 Content="Search Result:"/>
+            <!-- Search Result List View -->
             <ListView
                Height="100"
                Margin= "15,0,0,10"
                SelectedItem="{Binding Source={StaticResource Vm}, Path=SelectedResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                ItemsSource="{Binding Source={StaticResource Vm}, Path=Locations}">
-
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
@@ -66,6 +67,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <!-- General information for selected city -->
             <StackPanel>
                 <Label
                     Style="{StaticResource AreaHeaderHeadline}"
@@ -77,6 +79,7 @@
                     Style="{StaticResource AreaDetailsLabel}"
                     Content="{Binding Source={StaticResource Vm}, Path=SelectedResult.Country.LocalizedName}"/>
             </StackPanel>
+            <!-- Grid for general forecast information -->
             <Grid
                 Margin="15,0,0,15">
                 <Grid.RowDefinitions>
@@ -89,7 +92,6 @@
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
                 <TextBlock
                     Grid.ColumnSpan="2"
                     Grid.Row="0"
@@ -125,13 +127,16 @@
                     Style="{StaticResource HeadlineTextBlock}"
                     Text="{Binding Headline.Category}"/>
             </Grid>
+            <!-- Refresh Button to refresh forecast information -->
             <Button
                 Content="Refresh"
                 Command="{Binding Source={StaticResource Vm}, Path=RefreshCommand}"
                 CommandParameter="{Binding Source={StaticResource Vm}, Path=CurrentForecast}"
                 Margin="15 10 15 10"/>
+            <!-- ListView for forecast details information -->
             <ListView
                 ItemsSource="{Binding  DailyForecasts}">
+                <!-- Left grid for weather conditions -->
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -189,7 +194,8 @@
                                 Grid.Row="4"
                                 Text="{Binding Temperature.Minimum}"/>
                         </Grid>
-                        <StackPanel>
+                            <!-- Right section for air quality and pollution information -->
+                            <StackPanel>
                             <ListView
                                 HorizontalAlignment="Right"
                                 ItemsSource="{Binding AirAndPollen}">
