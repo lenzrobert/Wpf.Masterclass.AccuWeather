@@ -8,13 +8,24 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
 {
     public class ForecastViewModel
     {
-       public WeatherForecast CurrentForecast { get; set; }
-       public RefreshCommand RefreshCommand { get; set; }
-
-      
-
+        /// <summary>
+        /// Model - for View
+        /// </summary>
+        public WeatherForecast CurrentForecast { get; set; }
+        
+        /// <summary>
+        /// Command for refresh button
+        /// </summary>
+        public RefreshCommand RefreshCommand { get; set; }
+     
+        /// <summary>
+        /// Backing field for locations query
+        /// </summary>
         private string _query;
 
+        /// <summary>
+        /// Locations Query
+        /// </summary>
         public string Query
         {
             get => _query;
@@ -25,8 +36,14 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
             }
         }
 
+        /// <summary>
+        /// Backing field for selected location
+        /// </summary>
         private ForecastLocation _selectedResult;
 
+        /// <summary>
+        /// Selected location
+        /// </summary>
         public ForecastLocation SelectedResult
         {
             get => _selectedResult;
@@ -37,8 +54,14 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
             }
         }
    
+        /// <summary>
+        /// Observerable Collection for Locations list view
+        /// </summary>
         public ObservableCollection<ForecastLocation> Locations { get; set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ForecastViewModel()
         {
            CurrentForecast = new WeatherForecast();
@@ -47,6 +70,9 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
           
         }
 
+        /// <summary>
+        /// Get Location - from REST webservice
+        /// </summary>
         private async void GetLocations()
         {
             List<ForecastLocation> locations = await ForecastApi.GetAutocompleteAsync(Query);
@@ -57,7 +83,9 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
             }
         }
 
-
+        /// <summary>
+        /// Get Forecast - from REST webservice
+        /// </summary>
         internal async void GetWeather()
         {
             if (SelectedResult.Key != null)

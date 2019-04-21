@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace Wpf.Masterclass.AccuWeather.Model
+﻿namespace Wpf.Masterclass.AccuWeather.Model
 {
     public class MetricsDetails : BasicForecast
     {

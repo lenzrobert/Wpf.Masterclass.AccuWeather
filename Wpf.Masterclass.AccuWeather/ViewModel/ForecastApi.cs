@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
@@ -13,6 +10,11 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
 {
     public class ForecastApi
     {
+        /// <summary>
+        /// Async method to get weather five days forecast from Accu Weather REST API
+        /// </summary>
+        /// <param name="citiyCode">city code</param>
+        /// <returns>WeatherForecast object</returns>
         public static async Task<WeatherForecast> GetWeatherInformation5DaysAsync(string citiyCode)
         {
 
@@ -38,6 +40,11 @@ namespace Wpf.Masterclass.AccuWeather.ViewModel
             return null;
         }
 
+        /// <summary>
+        /// Asyc method to get locatons from Accu Weather Autocomplete REST api
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public static async Task<List<ForecastLocation>> GetAutocompleteAsync(string query)
         {
             string url =

@@ -2,6 +2,9 @@
 
 namespace Wpf.Masterclass.AccuWeather.Model
 {
+    /// <summary>
+    /// Basic class to implement INotifyPropertyChanged interface for all view model properties
+    /// </summary>
     public class BasicForecast : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
